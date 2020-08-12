@@ -19,7 +19,6 @@ echo
 echo == Test service.
 echo
 
-dfx canister install BigText
 dfx canister call BigText selfTest
 LOOP="(true)";
 while [ "$LOOP" == "(true)" ]; do
