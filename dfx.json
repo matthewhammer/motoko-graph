@@ -2,7 +2,7 @@
   "canisters": {
     "BigText": {
       "main": "service/BigText.mo"
-    },
+    }
   },
   "defaults": {
     "build": {
