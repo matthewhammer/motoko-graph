@@ -1,0 +1,20 @@
+[
+  {
+    "name": "base",
+    "repo": "https://github.com/dfinity/motoko-base",
+    "version": "master",
+    "dependencies": []
+  },
+  {
+    "name": "crud",
+    "repo": "https://github.com/matthewhammer/motoko-crud",
+    "version": "master",
+    "dependencies": []
+  },
+  {
+    "name": "bigmap",
+    "repo": "git@github.com:dfinity/motoko-bigmap.git",
+    "version": "master",
+    "dependencies": ["base", "SHA256"]
+  }
+]
