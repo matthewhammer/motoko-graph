@@ -4,7 +4,7 @@ import Debug "mo:base/Debug";
 actor {
       
   // temp
-  var count = 0;
+  stable var count = 0;
 
   public func doNextCall() : async Bool {
     count += 1;

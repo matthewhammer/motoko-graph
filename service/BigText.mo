@@ -1,5 +1,6 @@
 /* temp: boiler plate service
 */
+import Types "mo:../src/Types";
 import Debug "mo:base/Debug";
 actor {
       
