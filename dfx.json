@@ -1,7 +1,7 @@
 {
   "canisters": {
-    "BigText": {
-      "main": "service/BigText.mo"
+    "Main": {
+      "main": "service/Main.mo"
     }
   },
   "defaults": {

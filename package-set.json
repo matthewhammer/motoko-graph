@@ -10,11 +10,5 @@
     "repo": "https://github.com/matthewhammer/motoko-crud",
     "version": "master",
     "dependencies": []
-  },
-  {
-    "name": "bigmap",
-    "repo": "git@github.com:dfinity/motoko-bigmap.git",
-    "version": "master",
-    "dependencies": ["base", "SHA256"]
   }
 ]

@@ -1,6 +1,6 @@
 {
- "name": "BigText",
-  "repo": "git@github.com:dfinity/motoko-bigtext",
+ "name": "graph"
+  "repo": "git@github.com:matthewhammer/motoko-graph",
   "version": "v0.0.1",
   "dependencies": ["base", "crud"]
 }
