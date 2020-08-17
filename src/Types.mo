@@ -28,17 +28,22 @@ module {
 
   type Call<I, N, E> = { // Response-type:
     #clear; // ()
-    #addNode : (I, N, [(E, I)]); // Iter<EdgeId>
-    #addEdge : (I, E, I); // EdgeId
+    #readNodes; // Iter<(I, N, Iter<(E, I)>)>
+    #readEdges; // Iter<(I, E, I)>
+    #compareEdges : (EdgeId, EdgeId); // ?Order
+
+    #createNode : (I, N, [(E, I)]); // Iter<EdgeId>
+    #readNode : I; // ?(N, Iter<(E, I)>)
+    #updateNode : (I, N); // ?N
+    #deleteNode : I; // ()
+    #removeNode : I; // ?(N, Iter<(E, I)>)
+
+    #createEdge : (I, E, I); // EdgeId
+    #readEdge : EdgeId; // ?(I, E, I)
+    #edgeRank : EdgeId; // ?Nat  (?0 for first)
     #insertEdge : ({#after; #before}, EdgeId, I, E, I); // ?EdgeId
     #updateEdge : (EdgeId, I, E, I); // ?(I, E, I)
-    #compareEdges : (EdgeId, EdgeId); // ?Order
-    #nodes; // Iter<(I, N, Iter<(E, I)>)>
-    #edges; // Iter<(I, E, I)>
-    #node : I; // ?(N, Iter<(E, I)>)
-    #edge : EdgeId; // ?(I, E, I)
-    #deleteNode : I; // ?()
-    #removeNode : I; // ?(N, Iter<(E, I)>)
+    #deleteEdge : EdgeId; // ()
     #removeEdge : EdgeId; // ?(I, E, I)
 
     // graph walk: root graph at a node and algorithmically walk the graph's edges
