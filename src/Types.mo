@@ -22,50 +22,7 @@ module {
     source : I;
     target : I;
     data : E;
-  }
-
-  type Shared<I,N,E> = {
-    // to do
   };
-
-  type Internal<I,N,E> = {
-    // to do
-
-    /*
-     Design
-
-
-     ## space-time constraints:
-
-     All graph operations mentioned in type Call are either O(1) or O(log n) time.
-
-     We employ two inductive structures to represent the graph nodes and edges, respectively:
-
-     1. Node data (type NodeData)
-
-     - Trie<I, N>
-
-     2. Edge sequence (type EdgeSeq)
-
-     - binary tree representing edge sequence
-
-     - balanced: prob based on level tree alg (hashing unique ids, assigned by counter)
-
-     - edge creation counter based on stateless det alg:
-       - max id maintained at each bin node
-       - next = max id + 1
-
-     - maintain info at each internal bin node:
-       - level : Nat (determined psuedo randomly, from EdgeIds)
-       - maxId : Nat
-       - edgeMap : Trie<EdgeId, EdgeInfo>
-       - nodeMap : Trie<I, EdgeSeq>
-       - ...?
-
-       */
-
-  };
-
 
   type Call<I, N, E> = { // Response-type:
     #clear; // ()
