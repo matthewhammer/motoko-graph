@@ -19,6 +19,7 @@ query algorithms (all paths, shortest path, min cut).
 The following represent potential applications:
 
 - [Entity-relationship models](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model), for relational queries.
+- [Sequence diagrams](https://en.wikipedia.org/wiki/Sequence_diagram), for event-based modeling.
 - [Dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), for interactive and/or incremental systems:
   - [Dynamic dependency graphs (producer/consumer relationships)](https://en.wikipedia.org/wiki/Incremental_computing#Dynamic_methods)
   - [Demanded computation graphs](https://arxiv.org/abs/1503.07792)
@@ -31,7 +32,7 @@ The API design choices:
 
 1. Edges are uniquely identifed.
 2. Edges are ordered.
-3. Multi-graphs permitted.
+3. [Multigraphs](https://en.wikipedia.org/wiki/Multigraph) supported.
 
 Rationale: 
 
