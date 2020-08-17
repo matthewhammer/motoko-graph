@@ -8,7 +8,7 @@ actor {
       
   // node ids, node data and edge data
   // 
-  stable var graph = Persis.empty<Nat, Nat, Nat>(Persis.Id.Nat);
+  flexible var graph = Persis.empty<Nat, Nat, Nat>(Persis.NodeId.nat());
 
   // temp
   stable var count = 0;

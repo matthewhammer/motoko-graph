@@ -36,18 +36,17 @@ module {
     #deleteNode : I; // ()
     #removeNode : I; // ?(N, Iter<(EdgeId, EdgeInfo)>)
 
-    #createEdge : EdgeInfo; // EdgeId
+    #createEdge : EdgeInfo<I, E>; // EdgeId
     #readEdge : EdgeId; // ?EdgeInfo
     #edgeRank : EdgeId; // ?Nat  (?0 for first)
-    #insertEdge : ({#after; #before}, EdgeId, EdgeInfo); // ?EdgeId
-    #updateEdge : (EdgeId, EdgeInfo); // ?EdgeInfo
+    #insertEdge : ({#after; #before}, EdgeId, EdgeInfo<I, E>); // ?EdgeId
+    #updateEdge : (EdgeId, EdgeInfo<I, E>); // ?EdgeInfo
     #deleteEdge : EdgeId; // ()
     #removeEdge : EdgeId; // ?EdgeInfo
 
     // graph walk: root graph at a node and algorithmically walk the graph's edges
     // (zero or once each) to each other node (exactly once each).
     #walk : (I, Walk<I, N, E>); // Iter<(EdgeId, EdgeInfo, N)>
-    });
   };
 
   type Walk<I, N, E> = {
@@ -59,10 +58,11 @@ module {
     )
   };
 
-  /// metrics for graph edges, and hueristic function for node-node
-  /// distance (must be [admissible](https://en.wikipedia.org/wiki/A*_search_algorithm#Admissibility)).
+  /// metrics for search:
+  /// - null encodes infinite positive magnitudes
+  /// - node-node distance function must be [admissible](https://en.wikipedia.org/wiki/A*_search_algorithm#Admissibility).
   type Metric<I, N, E> = {
-    length : (EdgeId, I, E, I) -> Nat;
-    distance : (I, N, I, N) -> Nat;
+    length : (EdgeId, I, E, I) -> ?Nat;
+    distance : (I, N, I, N) -> ?Nat;
   };
 }
