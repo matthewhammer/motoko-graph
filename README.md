@@ -13,8 +13,8 @@ Eventual goals:
 
 ## Design
 
-This library supports models that require generic graphs, and their
-query algorithms (all paths, shortest path, min cut).
+This library supports generic graph-based data models and their
+associated query algorithms (all paths, shortest path, min cut).
 
 ### Potential applications:
 
