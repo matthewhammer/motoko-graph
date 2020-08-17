@@ -26,22 +26,22 @@ associated query algorithms (all paths, shortest path, min cut).
   - [Demanded abstract interpretation graphs]((https://github.com/cuplv/d1a_impl)), for static program analysis.
 - [Probabilistic / graphical models](https://en.wikipedia.org/wiki/Graphical_model), for machine learning.
 
-### Mathematical properties (Graph structure specifics)
+### Design choices
 
-#### The API design choices
+#### Design summary
 
 1. Edges are uniquely identifed.
 2. Edges are ordered.
 3. [Multigraphs](https://en.wikipedia.org/wiki/Multigraph) supported.
 
-#### Rationale
+#### Design rationale
 
 1. Dynamic dependency graphs require all three choices, generally.
 
-2  Less structured (undirected, unordered) graphs can be
+2. Less structured (undirected, unordered) graphs can be
    encoded into this richer structure, but the reverse is not true.
 
-### (1) Edges are uniquely identifed
+#### (1) Edges are uniquely identifed
 
 Upon creation, the API issues a unique id for each edge in the graph.
 
@@ -53,7 +53,7 @@ A source-target node pair, and a domain-specific edge label.
 The position may be updated with new edge information,
 retaining the same edge identity (ordered position).
 
-### (2) Edges are ordered
+#### (2) Edges are ordered
 
 The set of edges is ordered totally, though future revisions may relax ordering to a partial one.
 
@@ -63,7 +63,7 @@ The "local ordering" of incoming and outgoing edges at each node is
 consistent with the global total ordering; hence, the total ordering
 suffices to define all local orderings (both incoming and outgoing).
 
-### (3) Multigraphs
+#### (3) Multigraphs
 
 Multigraphs permit multiple edges to coexist, independently, between a
 single pair of nodes. This support is critical for many applications.
