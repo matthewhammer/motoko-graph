@@ -18,12 +18,12 @@ query algorithms (all paths, shortest path, min cut).
 
 The following represent potential applications:
 
-- Entity-relation models (for relational queries)
-- Dependency graphs
-  - Dynamic dependency graphs (producer/consumer relationships)
-  - Demanded computation graphs
-  - Demanded abstract interpretation graphs
-- Graphical models for machine learning
+- [Entity-relationship models](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model), for relational queries.
+- [Dependency graphs](https://en.wikipedia.org/wiki/Dependency_graph), for interactive and/or incremental systems:
+  - [Dynamic dependency graphs (producer/consumer relationships)](https://en.wikipedia.org/wiki/Incremental_computing#Dynamic_methods)
+  - [Demanded computation graphs](https://arxiv.org/abs/1503.07792)
+  - [Demanded abstract interpretation graphs]((https://github.com/cuplv/d1a_impl)), for static program analysis.
+- [Probabilistic / graphical models](https://en.wikipedia.org/wiki/Graphical_model), for machine learning.
 
 ### Mathematical properties (Graph structure specifics)
 
