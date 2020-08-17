@@ -18,37 +18,78 @@ module {
 
   public type EdgeId = Nat;
 
+  public type EdgeInfo<I, E> = {
+    source : I;
+    target : I;
+    data : E;
+  }
+
   type Shared<I,N,E> = {
     // to do
   };
 
   type Internal<I,N,E> = {
     // to do
+
+    /*
+     Design
+
+
+     ## space-time constraints:
+
+     All graph operations mentioned in type Call are either O(1) or O(log n) time.
+
+     We employ two inductive structures to represent the graph nodes and edges, respectively:
+
+     1. Node data (type NodeData)
+
+     - Trie<I, N>
+
+     2. Edge sequence (type EdgeSeq)
+
+     - binary tree representing edge sequence
+
+     - balanced: prob based on level tree alg (hashing unique ids, assigned by counter)
+
+     - edge creation counter based on stateless det alg:
+       - max id maintained at each bin node
+       - next = max id + 1
+
+     - maintain info at each internal bin node:
+       - level : Nat (determined psuedo randomly, from EdgeIds)
+       - maxId : Nat
+       - edgeMap : Trie<EdgeId, EdgeInfo>
+       - nodeMap : Trie<I, EdgeSeq>
+       - ...?
+
+       */
+
   };
+
 
   type Call<I, N, E> = { // Response-type:
     #clear; // ()
     #readNodes; // Iter<(I, N, Iter<(E, I)>)>
-    #readEdges; // Iter<(I, E, I)>
+    #readEdges; // Iter<(EdgeId, EdgeInfo)>
     #compareEdges : (EdgeId, EdgeId); // ?Order
 
     #createNode : (I, N, [(E, I)]); // Iter<EdgeId>
-    #readNode : I; // ?(N, Iter<(E, I)>)
+    #readNode : I; // ?(N, Iter<(EdgeId, EdgeInfo)>)
     #updateNode : (I, N); // ?N
     #deleteNode : I; // ()
-    #removeNode : I; // ?(N, Iter<(E, I)>)
+    #removeNode : I; // ?(N, Iter<(EdgeId, EdgeInfo)>)
 
-    #createEdge : (I, E, I); // EdgeId
-    #readEdge : EdgeId; // ?(I, E, I)
+    #createEdge : EdgeInfo; // EdgeId
+    #readEdge : EdgeId; // ?EdgeInfo
     #edgeRank : EdgeId; // ?Nat  (?0 for first)
-    #insertEdge : ({#after; #before}, EdgeId, I, E, I); // ?EdgeId
-    #updateEdge : (EdgeId, I, E, I); // ?(I, E, I)
+    #insertEdge : ({#after; #before}, EdgeId, EdgeInfo); // ?EdgeId
+    #updateEdge : (EdgeId, EdgeInfo); // ?EdgeInfo
     #deleteEdge : EdgeId; // ()
-    #removeEdge : EdgeId; // ?(I, E, I)
+    #removeEdge : EdgeId; // ?EdgeInfo
 
     // graph walk: root graph at a node and algorithmically walk the graph's edges
     // (zero or once each) to each other node (exactly once each).
-    #walk : (I, Walk<I, N, E>); // Iter<(EdgeId, E, I, N)>
+    #walk : (I, Walk<I, N, E>); // Iter<(EdgeId, EdgeInfo, N)>
     });
   };
 
