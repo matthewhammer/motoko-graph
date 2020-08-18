@@ -6,9 +6,15 @@
     "dependencies": []
   },
   {
+    "name": "graph",
+    "repo": "https://github.com/dfinity/motoko-graph",
+    "version": "master",
+    "dependencies": ["base"]
+  },
+  {
     "name": "crud",
     "repo": "https://github.com/matthewhammer/motoko-crud",
     "version": "master",
-    "dependencies": []
+    "dependencies": ["base"]
   }
 ]

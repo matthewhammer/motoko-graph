@@ -3,7 +3,7 @@ import Trie "mo:base/Trie";
 import Hash "mo:base/Hash";
 import Nat "mo:base/Nat";
 
-import Sequence "Sequence";
+import Sequence "mo:sequence/Sequence";
 
 /*
  # Design notes
