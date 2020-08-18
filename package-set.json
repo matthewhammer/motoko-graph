@@ -6,8 +6,8 @@
     "dependencies": []
   },
   {
-    "name": "graph",
-    "repo": "https://github.com/dfinity/motoko-graph",
+    "name": "sequence",
+    "repo": "https://github.com/dfinity/motoko-sequence",
     "version": "master",
     "dependencies": ["base"]
   },
