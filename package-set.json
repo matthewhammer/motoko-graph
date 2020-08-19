@@ -7,7 +7,7 @@
   },
   {
     "name": "sequence",
-    "repo": "https://github.com/dfinity/motoko-sequence",
+    "repo": "https://github.com/matthewhammer/motoko-sequence",
     "version": "master",
     "dependencies": ["base"]
   },
