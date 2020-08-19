@@ -6,9 +6,15 @@
     "dependencies": []
   },
   {
+    "name": "sequence",
+    "repo": "https://github.com/matthewhammer/motoko-sequence",
+    "version": "master",
+    "dependencies": ["base"]
+  },
+  {
     "name": "crud",
     "repo": "https://github.com/matthewhammer/motoko-crud",
     "version": "master",
-    "dependencies": []
+    "dependencies": ["base"]
   }
 ]
