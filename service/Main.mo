@@ -3,6 +3,7 @@
 import Debug "mo:base/Debug";
 
 import Persis "../src/Persistent";
+import Search "../src/Search";
 
 actor {
       

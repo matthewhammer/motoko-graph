@@ -70,13 +70,13 @@ module {
   public type Iter<X> = Iter.Iter<X>;
 
   /// OO interface for graphs (proposed, RFC)
-  public type Object<I, N, E> = object {
+  public type GraphObject<I, N, E> = object {
     clear : () -> ();
     readNodes : () -> Iter<(I, N, Iter<(E, I)>)>;
     readEdges : () -> Iter<(EdgeId, EdgeInfo<I, E>)>;
     compareEdges : (EdgeId, EdgeId) -> ?Order.Order;
 
-    createNode : (I, N, [(E, I)]) -> Iter<EdgeId>;
+    createNode : (I, N, [(E, I)]) -> ?Iter<EdgeId>; // null if Id is already taken
     readNode : I -> ?(N, Iter<(EdgeId, EdgeInfo<I, E>)>);
     updateNode : (I, N) -> ?N;
     deleteNode : I -> ();
