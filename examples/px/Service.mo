@@ -1,5 +1,7 @@
 import Types "Types";
 import Param "Param";
+import Model "Model";
+import SeedData "SeedData";
 
 import Debug "mo:base/Debug";
 

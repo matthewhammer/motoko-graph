@@ -1,4 +1,10 @@
-import Types "Types";
+import GraphBuild "../../src/Build";
+import GraphTypes "../../src/Types";
+
+import PXTypes "Types";
+import PXParam "Param";
+
+import Nat "mo:base/Nat";
 
 /// Graphical data model
 module {
@@ -53,42 +59,107 @@ module {
 
   // graph edge data
   public type Edge = {
-    #region; // edge target is #region
+    #region; // edge target is #region; source is #producer or #retailer
+    #contains; // edge source is #region; target is #producer or #retailer
     #inventory; // edge target is #inventory
     #producer; // edge target is #producer
-    #route : RouteData; // edge source/target is #region
+    #route; // edge target is a #route; source is a #trucker
+    #routePath : RouteData; // edge source/target is #region
   };
 
   public type Region = {
-    id : Nat; // original numeric ID, from Param
+    num : Nat; // original numeric ID, from Param module type
   };
 
   public type Trucker = { };
   public type Retailer = { };
-
-  // out edges: #region and #inventory
   public type Producer = { };
+
+  public type Time = PXTypes.Time;
+  public type EntityId = PXTypes.EntityId;
 
   // route as a graph node
   public type Route = {
-    start : Types.Time;
-    end : Types.Time;
+    start : Time;
+    end : Time;
     cost : Nat;
   };
 
   // route data as edge data connecting Region nodes
   public type RouteData = {
-    id : Types.EntityId; // node id for Route node
-    start : Types.Time;
-    end : Types.Time;
+    id : EntityId; // node id for Route node
+    start : Time;
+    end : Time;
     cost : Nat;
   };
 
-  // out edge: #producer
   public type Inventory = {
     kind : Text;
     quantity : Nat;
     cost : Nat;
   };
 
+
+  /// Build GraphModel from parameter data
+  public module Build {
+
+    /// PX graph model
+    public type GraphModel = GraphTypes.GraphObject<EntityId, Entity, Edge>;
+
+    /// abstract graph-building operations
+    public type GraphBuild = GraphBuild.Build<EntityId, Entity, Edge>;
+
+    /// region Id from region number
+    func regionNum(i : Nat) : Text {
+      "region-" # (Nat.toText i)
+    };
+    
+    /// build region node (no op if already exists)
+    func regionNode(b : GraphBuild, num_ : Nat) {
+      b.node(regionNum(num_), #region{ num = num_ });
+    };
+
+    /// build all entities in the parameter data
+    public func entities(b : GraphBuild, ents : [PXParam.Entity]) : GraphModel {
+      for (e in ents.vals()) {
+        switch e {
+          case (#inventory(i)) {
+                 b.node(i.id, #inventory({kind = i.kind; quantity = i.quantity; cost = i.cost}));
+                 b.edge(i.producer, i.id, #inventory);
+                 b.edge(i.id, i.producer, #producer);
+               };
+          case (#producer(p)) {
+                 b.node(p.id, #producer({ }));
+                 regionNode(b, p.region);
+                 b.edge(p.id, regionNum(p.region), #region);
+                 b.edge(regionNum(p.region), p.id, #contains);
+               };
+          case (#retailer(r)) {
+                 b.node(r.id, #retailer({ }));
+                 regionNode(b, r.region);
+                 b.edge(r.id, regionNum(r.region), #region);
+                 b.edge(regionNum(r.region), r.id, #contains);
+               };
+          case (#trucker(t)) {
+                 b.node(t.id, #trucker({ }));
+               };
+          case (#route(r)) {
+                 b.node(r.id, #route({ start = r.startTime; end = r.endTime; cost = r.cost }));
+                 regionNode(b, r.startRegion);
+                 regionNode(b, r.endRegion);
+                 b.edge(r.trucker, r.id, #route);
+                 b.edge(regionNum(r.startRegion), 
+                        regionNum(r.endRegion),
+                        #routePath{ 
+                          id = r.id; 
+                          start = r.startTime; 
+                          end = r.endTime; 
+                          cost = r.cost 
+                        });
+               };
+        }
+      };
+      b.graph()
+    };
+  }
 }
