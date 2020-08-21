@@ -104,10 +104,10 @@ module {
   public module Build {
 
     /// PX graph model
-    public type GraphModel = GraphTypes.GraphObject<EntityId, Entity, Edge>;
+    public type Graph = GraphTypes.GraphObject<EntityId, Entity, Edge>;
 
     /// abstract graph-building operations
-    public type GraphBuild = GraphBuild.Build<EntityId, Entity, Edge>;
+    public type Build = GraphBuild.Build<EntityId, Entity, Edge>;
 
     /// region Id from region number
     func regionNum(i : Nat) : Text {
@@ -115,12 +115,12 @@ module {
     };
     
     /// build region node (no op if already exists)
-    func regionNode(b : GraphBuild, num_ : Nat) {
+    func regionNode(b : Build, num_ : Nat) {
       b.node(regionNum(num_), #region{ num = num_ });
     };
 
     /// build all entities in the parameter data
-    public func entities(b : GraphBuild, ents : [PXParam.Entity]) : GraphModel {
+    public func entities(b : Build, ents : [PXParam.Entity]) : Graph {
       for (e in ents.vals()) {
         switch e {
           case (#inventory(i)) {

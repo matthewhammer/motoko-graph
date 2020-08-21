@@ -2,9 +2,17 @@ import Types "Types";
 
 module {
 
-  public type G<I, N, E> = Types.GraphObject<I, N, E>;
+  public type Graph<I, N, E> = Types.GraphObject<I, N, E>;
 
-  public class Build<I, N, E>(g : G<I, N, E>) {
+  public func empty<I, N, E>() : Graph<I, N, E> {
+    // to do
+
+    // to do -- choose a simple, inefficient represetnation for now (while finishing Persistent one); use for tests
+    assert false;
+    loop { }
+  };
+
+  public class Build<I, N, E>(g : Graph<I, N, E>) {
 
     public func node(id : I, data : N) {
       switch (g.createNode(id, data, [])) {
@@ -17,7 +25,7 @@ module {
       ignore g.createEdge({source = src; target = tgt; data = d})
     };
 
-    public func graph() : G<I, N, E> = g;
+    public func graph() : Graph<I, N, E> = g;
 
   };
 }
