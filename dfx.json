@@ -1,7 +1,7 @@
 {
   "canisters": {
-    "Main": {
-      "main": "service/Main.mo"
+    "Px": {
+      "main": "examples/px/Service.mo"
     }
   },
   "defaults": {

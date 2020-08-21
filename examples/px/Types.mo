@@ -7,9 +7,9 @@ module {
   public type Time = Int;
 
   // structured, human-readable identifiers
-  public type EntityId =
+  public type EntityId = Text;
     //{
-    #text : Text;
+    //#text : Text;
     // To do -- more structure: e.g., #text("prod1-apple1") vs #array([#text("prod1"), #text("apple1")])
     //#array : [EntityId];
     //};

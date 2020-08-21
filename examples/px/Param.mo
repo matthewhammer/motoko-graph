@@ -1,10 +1,14 @@
 import Types "Types";
 
 /// Parameter data for graph model
-public module Param {
+module {
 
   /// Parameter data for graph construction (gives pre-graphical, seed-data structure)
   
+  public type Time = Types.Time;
+  public type EntityId = Types.EntityId;
+  public type RegionId = Types.RegionId;
+
   public type Entity = {
     #inventory : Inventory;
     #producer : Producer;
