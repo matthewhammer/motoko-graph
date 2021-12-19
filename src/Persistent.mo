@@ -49,7 +49,7 @@ module {
     edges : Sequence.Sequence<EdgeInfo<I, E>>;
   };
 
-  public func empty<I, N, E>(_nodeId : NodeId<I>) : Graph<I, N, E> = {
+  public func empty<I, N, E>(_nodeId : NodeId<I>) : Graph<I, N, E> {
     {
       nodeId = _nodeId;
       nodes = Trie.empty();
